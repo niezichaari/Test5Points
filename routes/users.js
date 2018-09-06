@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var UserTest = mongoose.model('Usertest');
-var MessageModel = mongoose.model('MessageModel')
-
+/*var UserTest = mongoose.model('UserSchema');
+var MessageModel = mongoose.model('MessageModel');
+*/
 
 
 /* GET users listing. */
 router.post('/', function(req, res, next) {
-  var UserReq = new UserTest({
+/*  var UserReq = new UserTest({
     UserName: req.body.UserName,
     Password: req.body.Password
   });
@@ -25,9 +25,9 @@ router.post('/', function(req, res, next) {
            message: 'Check username or password'
        });        }
 
-  })
+  })*/
 })
-
+/*
 router.post('/SendMessage', function(req, res, next) {
   var Message = new MessageModel({
     Sender : req.body.Sender,
@@ -37,11 +37,11 @@ router.post('/SendMessage', function(req, res, next) {
   });
   /*MessageModel.find(function(err, Message){
     res.send('exist');
-  })*/
+  })
   Message.save(function(err, Message){
     res.send('MessageSended');
   })
-})
+})*/
   /*
   chris.save(function(err) {
     if (err) throw err;

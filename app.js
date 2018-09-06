@@ -4,7 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var db=require('./database/database.js');
-
+var passport = require('passport');
+var LocalStrategy= require('passport-local').Strategy;
+var User = require('./models/User');
+//var User = require('./models/Message');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -28,6 +31,16 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development

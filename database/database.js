@@ -1,16 +1,6 @@
 var mongoose =require('mongoose');
+mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/5Points');
-var schema =mongoose.Schema;
-var Usertest = new schema({
-  UserName : String,
-  Password:String
-});
-var MessageModel = new schema({
-  Sender : String,
-  Reciever:String,
-  object: String,
-  Message: String
-});
-mongoose.model('Usertest', Usertest);
-mongoose.model('MessageModel', MessageModel);
+mongoose.connect('mongodb://localhost/5Points')
+.then(() =>  console.log('connection succesful'))
+  .catch((err) => console.error(err));;
